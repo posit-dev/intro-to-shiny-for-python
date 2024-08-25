@@ -69,7 +69,7 @@ While Shinylive is great, it likely isn't the environment you'll use to develop 
 1.  Clone the repository using:
 
     ``` sh
-    git clone https://github.com/rstudio/shiny-python-workshop-2023.git
+    git clone https://github.com/posit-dev/intro-to-shiny-for-python
     ```
     
     or alternately download the repository as a zip file: 
