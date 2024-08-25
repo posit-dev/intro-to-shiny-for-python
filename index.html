@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This is the workshop website for the “Intro to Shiny for Python” Workshop at <a href="https://posit.co/conference/">Posit::Conf(2024)</a>.</p>
+<p>This is the website for the “Intro to Shiny for Python” Workshop.</p>
 <p>While most of these materials are designed to be used in conjunction with the workshop, they also stand alone as an educational resource.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -306,7 +306,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/intro-to-shiny-for-python\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
