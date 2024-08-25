@@ -1,0 +1,141 @@
+project:
+  type: website
+
+execute:
+  freeze: false
+
+website:
+  description: "Intro to Shiny for Python at Posit::conf(2024)"
+  # subtitle: "Conf 2024"
+  # announcement: 
+  #   icon: info-circle
+  #   dismissable: true
+  #   content: "**Alert** - this site is under active construction"
+  #   type: warning
+  #   position: below-navbar
+  navbar:
+    # logo: https://d33wubrfki0l68.cloudfront.net/71003073848110093780ea9a1c721439ad6b64f3/655ba/shiny-for-python.svg
+    logo: images/intro-to-shiny-for-python.png
+    search: true
+    left:
+      - docs/pre-requisites.qmd
+      - docs/shiny-express.qmd
+      - text: "Reactivity"
+        file: docs/reactivity-intro.qmd
+      - text: "UI Customization"
+        file: docs/ui-layout.qmd
+      - text: "Workflow"
+        file: docs/workflow-refactor.qmd
+      # - docs/test.qmd
+    tools: 
+      - icon: github
+        href: https://github.com/posit-conf-2024/intro-to-shiny-for-python
+      - icon: discord
+        href: https://discord.gg/AQVJzG2bnN
+
+  sidebar:
+    - title: "Hello, Shiny express!"
+      contents:      
+        - href: docs/shiny-express.qmd
+          text: Slides
+        - section: "Exercises"
+          contents: 
+          - docs/exercises/express-101-run-app/index.qmd
+          - docs/exercises/express-102-ui-module/index.qmd
+          - docs/exercises/express-103-inputs/index.qmd
+          - docs/exercises/express-104-outputs/index.qmd
+          - docs/exercises/express-105-reactivity/index.qmd
+          - docs/exercises/express-106-debug/index.qmd
+          - docs/exercises/express-107-debug/index.qmd
+          - docs/exercises/express-108-debug/index.qmd
+          - docs/exercises/express-109-debug/index.qmd
+          - docs/exercises/express-110-app/index.qmd
+        - section: "Apps"
+          contents:
+          - docs/apps/101-input/index.qmd
+          - docs/apps/102-output/index.qmd
+          - docs/apps/105-reactivity/index.qmd
+          
+    - title: "Reactivity"
+      contents:
+        - section: "Slides"
+          contents:
+          - href: docs/reactivity-intro.qmd
+            text: Reactivity Intro
+          - href: docs/reactivity-calc.qmd
+            text: Reactive Calculations
+        - section: "Exercises"
+          contents: 
+          - docs/exercises/express-201-reactive-calc/index.qmd
+          - docs/exercises/express-202-reactive-stack/index.qmd
+          - docs/exercises/express-208-reactive-event/index.qmd
+          - docs/exercises/express-209-reactive-effect/index.qmd
+        - section: "Apps"
+          contents:
+          - docs/apps/200-simple-reactive-calc/index.qmd
+          - docs/apps/201-modal/index.qmd
+          - docs/apps/202-reactive-event/index.qmd
+
+    - title: "UI Customization"
+      contents:
+        - section: "Slides"
+          contents:
+          - href: docs/ui-layout.qmd
+            text: UI Layout
+          - href: docs/ui-themes.qmd
+            text: UI Themes
+        - section: "Exercises"
+          contents: 
+          - docs/exercises/express-301-cards/index.qmd
+          - docs/exercises/express-302-sidebars/index.qmd
+          - docs/exercises/express-303-value-boxes/index.qmd
+          - docs/exercises/express-304-columns/index.qmd
+          - docs/exercises/express-305-app/index.qmd
+          - docs/exercises/express-306-app/index.qmd
+          - docs/exercises/express-307-themes/index.qmd
+          - docs/exercises/express-308-plot-themes/index.qmd
+          - docs/exercises/express-309-valuebox-themes/index.qmd
+          - docs/exercises/express-310-element-themes/index.qmd
+          - docs/exercises/express-311-style/index.qmd
+        - section: "Apps"
+          contents:
+          - docs/apps/330-target-app/index.qmd
+          - docs/apps/331-starting-app/index.qmd
+          - docs/apps/332-value-boxes/index.qmd
+          - docs/apps/333-columns/index.qmd
+          - docs/apps/334-target-app/index.qmd
+          - docs/apps/335-css/index.qmd
+    - title: "Workflow"
+      contents:
+        - section: "Slides"
+          contents:
+          - docs/workflow-refactor.qmd
+          - docs/workflow-modules.qmd
+          # - docs/_workflow-iterators.qmd
+          - docs/workflow-deploy.qmd
+        - section: "Exercises"
+          contents: 
+          - docs/exercises/express-401-extract-function/index.qmd
+          - docs/exercises/express-402-python-module/index.qmd
+          - docs/exercises/express-403-simple-module/index.qmd
+          - docs/exercises/express-404-module-fn/index.qmd
+          - docs/exercises/express-405-module-lambda/index.qmd
+          # - docs/exercises/express-410-iterators/index.qmd
+    - title: "Test"
+      contents:      
+        - docs/test.qmd
+        - section: "Exercises"
+          contents: 
+          - docs/exercises/express-101-run-app/index.qmd
+
+filters:
+  - shinylive
+
+format:
+  html:
+    theme: materia
+    css: styles.css
+    toc: true
+
+
+

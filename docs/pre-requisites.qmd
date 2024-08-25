@@ -1,0 +1,105 @@
+---
+title: "Pre-requisites"
+code-annotations: hover
+---
+
+```{python}
+# | echo: false
+import os
+import sys
+exercises_path = "./exercises"
+if exercises_path not in sys.path:
+    sys.path.append(exercises_path)
+from helpers import include_shiny_folder
+```
+
+
+## Background
+
+This workshop is aimed at people who are somewhat familiar with doing data analysis in Python, but do not have much of a background in Shiny. 
+
+If you are brand new to Python we recommend spending a bit of time familiarizing yourself with the following topics before the workshop: 
+
+- How to install Python packages in a virtual environment 
+- How to do basic data manipulation with `pandas` or `polars`
+- How to draw plots 
+- How to clone a repository with git
+
+## Prior to traveling:
+
+- Create a Github account, if you do not already have one
+- Install Python and your IDE of choice (we suggest VS Code or Positron) on the laptop you intend to bring to the workshop
+
+## On the day
+
+- Bring with you a laptop and power cord
+- You need to be able to access the course materials online from this laptop
+- You also need to be able to access a terminal / command line and run Python code from this laptop
+
+
+
+## Setup
+
+There are two ways to work through the examples and exercises in this workshop.
+
+### 1) In your web browser with Shinylive
+
+::: {.callout-note}
+This option is what we will use during the workshop.
+:::
+
+Shinylive allows you to run full-featured shiny apps in your browser, and includes a basic editor which is good enough to run examples. 
+
+As a result you should be able to work through all of the examples in the workshop using just the browser without installing anything locally.
+
+### 2) Optional: on your laptop with VS Code (or Positron)
+
+::: {.callout-note}
+You are welcome to use this option if you know how to set up Python and your preferred IDE.  We will only be able to give minimal support for this option during the workshop.
+
+You can use [Positron](https://github.com/posit-dev/positron) instead of VS Code if you feel adventurous.
+:::
+
+While Shinylive is great, it likely isn't the environment you'll use to develop Shiny apps, and so it makes sense to set up VS Code and run the examples locally. To do this follow these steps before the workshop:
+
+1.  Install [VS Code](https://code.visualstudio.com/)
+
+1.  Install the Shiny for Python [VS Code extension](https://marketplace.visualstudio.com/items?itemName=posit.shiny-python)
+
+1.  Clone the repository using:
+
+    ``` sh
+    git clone https://github.com/rstudio/shiny-python-workshop-2023.git
+    ```
+    
+    or alternately download the repository as a zip file: 
+
+    ![](../images/git-download-button.png){width="287"}
+
+1.  Navigate to the project directory and create a new virtual environment using
+
+    ```{.python}
+    python3 -m venv .venv
+    ```
+
+1.  Set your python interpreter to the virtual environment with {{< kbd CMD+SHIFT+P >}} and then typing `Select Interpreter`
+
+1.  Open a new terminal prompt, which should switch to `(.venv)`
+
+    Or ensure the virtual environment is activated by running:
+
+    ``` sh
+    source .venv/bin/activate
+    ```
+
+1.  Install the relevant packages with `pip install -r requirements.txt`
+
+All of the example apps and problems are stored in the `/docs/exercises` directory. 
+
+If you've installed the Shiny for Python VS Code extension, you can run any of the apps by opening the `app.py` file and clicking the play button in the top right.
+
+Alternatively, run a shiny app from the command line using:
+
+```{.python}
+shiny run <path-to-app.py> --reload
+```

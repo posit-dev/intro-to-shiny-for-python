@@ -1,0 +1,167 @@
+---
+title: "Intro to Shiny Modules"
+title-slide-attributes: 
+  data-background-image:  images/shiny-for-python-seattle.jpg
+  data-background-position: bottom left
+  data-background-size: cover
+format:
+  positconfslides-revealjs: 
+    incremental: false
+    chalkboard: true
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    code-link: true
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    css: "styles.css"
+    filters:
+      - positconfslides
+      - reveal-auto-agenda
+    auto-agenda:
+      heading: Agenda
+---
+
+
+
+# Introduction to shiny modules
+
+## Modules
+
+A `shiny` module provides you with a way to encapsulate both:
+
+- UI logic
+- Render logic
+
+This allows you to:
+
+1. Create re-usable components
+2. Abstract large parts of code into a separate unit
+
+
+This is:
+
+- Great for working with teams of developers
+- Essential for large applications
+
+## Module example
+
+Create a shiny module:
+
+ ```{.python}
+from shiny express import input, output, session, module
+
+@module
+def card_module(input, output, session, title, fn):
+    with ui.card():
+        ui.card_header(title)
+        @render.plot
+        def _plot_out():
+            return fn()
+```
+
+Call the module like you call a function:
+
+```{.python}
+card_module('id', 'title', fn)
+```
+
+## Look carefully at the definition and the call:
+
+::: {.callout-important}
+1. You don't pass `input`, `output` or `session` to the module
+2. You pass an `id` that must be unique in the namespace
+3. And then you pass the other arguments
+:::
+
+Create a shiny module:
+```{.python}
+@module
+def card_module(input, output, session, title, fn):
+  ...
+```
+
+\
+
+Call the module like you call a function:
+
+```{.python}
+card_module('id1', 'title', fn)
+```
+
+
+## Your turn: create a simple shiny module
+
+{{< yourturn 'express-403-simple-module' >}}
+
+# Including reactivity in your module
+
+## Your turn: create a more complicated shiny module
+
+{{< yourturn 'express-404-module-fn' >}}
+
+
+## Delaying reactivity with `lambda` functions
+
+Define a module: 
+
+```{.python}
+@module
+def card_module(input, output, session, title, fn):
+    with ui.card():
+        ui.card_header(title)
+        @render.plot
+        def _plot_out():
+            return fn()
+```
+
+Calling it like this throws an error:
+
+```{.python}
+card_module(
+    "card_1", 
+    "Distribution", 
+    plots.temp_distribution(filtered_data())
+)
+```
+
+::: {.callout-important}
+RuntimeError: No current reactive context
+:::
+
+## Explaining the `no current reactive context` error
+
+Python performs eager evaluation.
+
+This means that `plots.temp_distribution()` gets evaluated when the `card_module` is instantiated.
+
+```{.python}
+card_module(
+    "card_1", 
+    "Distribution", 
+    plots.temp_distribution(filtered_data())
+)
+```
+
+But you need to delay this evaluation until the shiny app needs to render the value.
+
+## Fixing the `no current reactive context` error
+
+Python evaluation is eager.
+
+But you can delay evaluation to be lazy using a `lambda` inline function:
+
+```{.python}
+card_module(
+    "card_1", 
+    "Distribution", 
+    lambda: plots.temp_distribution(filtered_data())
+)
+```
+
+## Your turn: insert the shiny module into your weather
+
+{{< yourturn 'express-405-module-lambda' >}}
+
+

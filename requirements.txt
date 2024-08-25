@@ -1,0 +1,11 @@
+shiny>=1.0.0
+shinylive==0.5.0
+pandas
+plotnine
+seaborn
+plotly
+scikit-learn
+shinywidgets
+shinyswatch
+tabulate
+faicons

@@ -1,0 +1,489 @@
+---
+title: "Reactivity Intro"
+title-slide-attributes: 
+  data-background-image:  images/shiny-for-python-seattle.jpg
+  data-background-position: bottom left
+  data-background-size: cover
+format:
+  positconfslides-revealjs: 
+    incremental: false
+    chalkboard: true
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    css: "styles.css"
+    filters:
+      - positconfslides
+      - reveal-auto-agenda
+    auto-agenda:
+      heading: Agenda
+    mermaid-format: svg
+---
+
+
+# Reactivity overview
+
+
+## How did Shiny do that?
+
+{{< yourview '105-reactivity' >}}
+
+
+## How did Shiny do that?
+
+- We told Shiny _what_ to do
+- We didn't tell Shiny _when_ to do it
+
+
+# How do other frameworks work?
+
+## How do other frameworks work?
+
+Other web application frameworks use event-driven programming:
+
+- Streamlit
+
+  - Re-render everything everywhere all the time
+
+- Dash / Panel / Gradio
+
+  - Define callback functions
+
+
+::: aside
+See also: <https://shiny.posit.co/py/docs/comp-streamlit.html>
+:::
+
+
+## Using callback functions is hard!
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- Every callback introduces side effects
+- Callbacks are hard to reason about, hard to compose
+- Bugs are subtle, conditional on sequences of events
+- In short: "callback hell"
+:::
+
+::: {.column width="60%"}
+```{.r .smaller}
+# This is not how shiny works!
+library(gWidgets)
+txt <- gtext("Customize me", container = gwindow(),
+  handler = function(h, ...) {
+    # Do something in response to text changing
+  }
+)
+btn <- gbutton("Click me", container = gwindow(),
+  handler = function(h, ...) {
+    # Do something in response to a button click
+  }
+)
+```
+:::
+
+:::: 
+
+
+::: aside
+Source: <https://jcheng.shinyapps.io/reactivity-dsc2014>
+:::
+
+## Event driven programming: summary
+
+- You have to do it
+- Easy to get wrong
+- Hard to tell when you get it wrong
+
+
+![](images/carmy-yelling.webp){fig-align="center"}
+
+# Reactive programming
+
+## Is there a better way?
+
+::: {.callout-note}
+- Infer the relationships between components 
+- Build a computation graph
+:::
+
+
+
+## The better way: reactivity
+
+- Shiny does **not** infer relationships by analyzing the source code
+  - Many ways that would break down!
+- Not static analysis, but rather, runtime tracing
+  - The underlying mechanism is simple, reliable, and intuitive
+  - The `shiny` team have more than 10 years of real-world experience with this form of reactivity
+
+::: aside
+The reactivity in `shiny` was originally inspired by [meteor.js](https://v3-docs.meteor.com/)
+:::
+
+## Drawing a reactive graph
+
+:::: {.columns}
+
+::: {.column width="60%" .smaller}
+
+Shiny express app:
+
+```{.python}
+from shiny.express import input, render, ui
+
+ui.input_slider("n", "N", 0, 100, 20)
+@render.text
+def txt():
+    return f"2 * n is {input.n() * 2}"
+```
+:::
+
+::: {.column width="40%"}
+Reactive graph:
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> R{Recipe}
+  R --> Sc((Text))
+```
+:::
+
+::::
+
+
+# Walking the graph
+
+## Initial state
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text))
+  linkStyle 0 display:none
+  classDef changed fill:#f96
+```
+
+
+## Calculate the text
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text)):::changed
+  classDef changed fill:#f96
+```
+
+
+## Final state
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text))
+  classDef changed fill:#f96
+```
+
+## Slider changes
+
+```{mermaid}
+flowchart TD
+  S[Slider]:::changed --> Sc((Text))
+  classDef changed fill:#f96
+```
+
+## Invalidates
+
+```{mermaid}
+flowchart TD
+  S[Slider]:::changed --> Sc((Text)):::changed
+  classDef changed fill:#f96
+```
+
+## Forget dependencies
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text))
+  linkStyle 0 display:none
+  classDef changed fill:#f96
+```
+
+
+## Recalculate
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text)):::changed
+  linkStyle 0 display:none
+  classDef changed fill:#f96
+```
+
+## Recompute the graph
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text)):::changed
+  classDef changed fill:#f96
+```
+
+## Updated state
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text))
+  classDef changed fill:#f96
+```
+
+
+
+
+
+# Your turn
+
+## Your turn
+
+Draw the graph of this application:
+
+{{< yourview '200-penguins' >}}
+
+Hint: you need 4 elements and draw the arrows between these.
+
+
+## Solution: Initial state
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Solution: Calculate scatter plot
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Solution: Calculate scatter plot
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Solution: Calculate distribution
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Solution: Calculate distribution
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  classDef changed fill:#f96
+```
+
+
+## Solution: Reactive graph
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+```
+
+
+## Solution: Slider changes
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider]:::changed --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Invalidated
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider]:::changed --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Forget dependencies
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Updated
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Checkbox changes
+```{mermaid}
+flowchart TD
+  C[Checkbox]:::changed --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Invalidated
+
+```{mermaid}
+flowchart TD
+  C[Checkbox]:::changed --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Forget dependencies
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+```
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+```
+
+## Solution: Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+## Solution: Updated
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+```
+
+
+# Conclusion
+
+## Summary: reactive programming
+
+- Tell Shiny how each output should be filled
+- Trust that the framework will keep everything up-to-date
+- You're setting the menu, not doing the cooking
+
+
+## Reactive programming
+
+![](images/carmy-whites.png){fig-align="center"}

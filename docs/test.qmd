@@ -1,0 +1,14 @@
+---
+title: Test
+---
+
+
+To view in full screen, click on the slides then press {{< kbd  f >}}, or <a href = "test-slides.html" target="_blank">open in new tab.</a>
+
+
+```{=html}
+<iframe class="slide-deck" src="test-slides.html" height="420" width="747" style="border: 1px solid #123233;"></iframe>
+```
+
+{{< yourturnIframeContainer >}}
+
