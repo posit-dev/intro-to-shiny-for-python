@@ -2,274 +2,274 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.687Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.654Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/references.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/pre-requisites.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/ui-layout-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-106-debug/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.551Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/102-ui-module/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-405-module-lambda/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/101-run-app/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-303-value-boxes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/305-app/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-308-plot-themes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/307-themes/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-304-columns/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/108-debug/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.510Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-109-debug/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.563Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/310-element-themes/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-402-python-module/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/402-python-module/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-401-extract-function/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/306-app/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-305-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/405-module-lambda/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.542Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-108-debug/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.559Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/110-app/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.518Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-201-reactive-calc/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.571Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/107-debug/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.506Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-301-cards/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/401-extract-function/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-103-inputs/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/303-value-boxes/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.534Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-310-element-themes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/104-outputs/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-403-simple-module/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/309-valuebox-themes/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-refactor-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/ui-themes-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/wrapup.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/ui-layout.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/ui-themes.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/reactivity-calc-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/333-columns/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/200-simple-reactive-calc/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/101-input/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.539Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.486Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/000-penguins/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.539Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.486Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/201-modal/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/331-starting-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/334-target-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/test-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/housekeeping.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.542Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-refactor.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-deploy.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/102-output/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.539Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.486Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/332-value-boxes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/202-reactive-event/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/335-css/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/105-reactivity/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.539Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.486Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/330-target-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/apps/200-penguins/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.490Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/reactivity-intro.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/shiny-express-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/test.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.638Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/reactivity-calc.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-modules.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/reactivity-intro-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-306-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/403-simple-module/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-309-valuebox-themes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/208-reactive-event/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.526Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-410-iterators/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/302-sidebars/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.534Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-208-reactive-event/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.579Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/106-debug/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.502Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-110-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.567Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/209-reactive-effect/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.530Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-209-reactive-effect/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.583Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/304-columns/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.534Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-307-themes/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/105-reactivity/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.498Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-202-reactive-stack/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.575Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/109-debug/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.514Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-105-reactivity/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.547Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/308-plot-themes/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-101-run-app/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/103-inputs/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.494Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-302-sidebars/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.587Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/201-reactive-calc/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.518Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-107-debug/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.555Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/410-iterators/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.542Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-404-module-fn/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/311-style/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-104-outputs/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/202-reactive-stack/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.522Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-102-ui-module/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.543Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/404-module-fn/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.538Z</lastmod>
   </url>
   <url>
-    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/express-311-style/index.html</loc>
-    <lastmod>2024-08-25T21:20:11.591Z</lastmod>
+    <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/exercises/301-cards/index.html</loc>
+    <lastmod>2024-08-27T16:30:17.534Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-deploy-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/shiny-express.html</loc>
-    <lastmod>2024-08-25T21:20:11.639Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.634Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/intro-to-shiny-for-python/docs/workflow-modules-slides.html</loc>
-    <lastmod>2024-08-25T21:20:11.643Z</lastmod>
+    <lastmod>2024-08-27T16:30:17.642Z</lastmod>
   </url>
 </urlset>
