@@ -1,4 +1,4 @@
-# Intro to Shiny for Python
+# Intro to Shiny for Python / Posit Conf::20204
 
 This is the repository for the "Intro to Shiny for Python" workshop.
 

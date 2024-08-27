@@ -1,20 +1,11 @@
 ---
 title: "Refactor shiny apps"
 title-slide-attributes: 
-  data-background-image:  images/shiny-for-python-seattle.jpg
+  data-background-image:  images/shiny-for-python.jpg
   data-background-position: bottom left
   data-background-size: cover
 format:
   positconfslides-revealjs: 
-    incremental: false
-    chalkboard: true
-    slide-number: c/t
-    code-copy: true
-    center-title-slide: false
-    code-link: true
-    highlight-style: a11y
-    width: "1600"
-    height: "900"
     css: "styles.css"
     filters:
       - positconfslides
@@ -113,7 +104,7 @@ In turn, this makes your reactive code much clearer
 
 ## Your turn
 
-{{< yourturn 'express-401-extract-function' >}}
+{{< yourturn '401-extract-function' >}}
 
 # Moving code into a python module
 
@@ -165,6 +156,6 @@ foo(2)
 
 ## Your turn
 
-{{< yourturn 'express-402-python-module' >}}
+{{< yourturn '402-python-module' >}}
 
 

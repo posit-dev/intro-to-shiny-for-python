@@ -1,20 +1,11 @@
 ---
 title: "UI Layout"
 title-slide-attributes: 
-  data-background-image:  images/shiny-for-python-seattle.jpg
+  data-background-image:  images/shiny-for-python.jpg
   data-background-position: bottom left
   data-background-size: cover
 format:
   positconfslides-revealjs: 
-    incremental: false
-    chalkboard: true
-    slide-number: c/t
-    code-copy: true
-    center-title-slide: false
-    code-link: true
-    highlight-style: a11y
-    width: "1600"
-    height: "900"
     css: "styles.css"
     filters:
       - positconfslides
@@ -152,7 +143,7 @@ So combine it with [the Shiny Express function reference](https://shiny.posit.co
 
 ## Your turn
 
-{{< yourturn 'express-301-cards' >}}
+{{< yourturn '301-cards' >}}
 
 ## Cards
 - Cards are just small boxes which contain other elements
@@ -213,7 +204,7 @@ ui.page_opts(title = "My Title")
 
 ## Your turn
 
-{{< yourturn 'express-302-sidebars' >}}
+{{< yourturn '302-sidebars' >}}
 
 # Value boxes
 
@@ -257,7 +248,7 @@ The `faicons` package provides [fontawesome](https://fontawesome.com/search?) ic
 
 ## Your turn
 
-{{< yourturn 'express-303-value-boxes' >}}
+{{< yourturn '303-value-boxes' >}}
 
 # Rows and columns
 
@@ -323,7 +314,7 @@ What if you want to customize your layout more generally?
 
 ## Your turn
 
-{{< yourturn 'express-304-columns' >}}
+{{< yourturn '304-columns' >}}
 
 # Tabsets
 
@@ -374,7 +365,7 @@ Call `ui.nav_spacer()` to push the panel labels to the right side of the navbar.
 
 ## Your turn
 
-{{< yourturn 'express-305-app' >}}
+{{< yourturn '305-app' >}}
 
 # Two advanced topics
 
