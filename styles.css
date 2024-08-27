@@ -24,3 +24,7 @@
 .navbar-logo {
   max-height: 60px;
 }
+
+span.navbar-title {
+    display: none;
+}
