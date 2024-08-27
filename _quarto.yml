@@ -5,7 +5,7 @@ execute:
   freeze: false
 
 website:
-  description: "Workshop: Intro to Shiny for Python"
+  title: "Workshop: Intro to Shiny for Python"
   announcement: 
     icon: info-circle
     dismissable: true
