@@ -8,7 +8,7 @@ format:
   positconfslides-revealjs: 
     css: "styles.css"
     filters:
-      - positconfslides
+      # - positconfslides
       - reveal-auto-agenda
     auto-agenda:
       heading: Agenda
@@ -21,7 +21,6 @@ format:
 ## your turn app only
 
 {{< yourview '101-hello-world' >}}
-
 
 
 ## Initial state
