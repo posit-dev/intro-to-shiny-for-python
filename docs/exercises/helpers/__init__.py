@@ -25,8 +25,6 @@ class QuartoPrint(list):
 
 def getcwd() -> str:
     current =  os.getcwd()
-    # relative = os.path.relpath(current)
-    # return os.path.dirname(relative)
     ptn = ("^.*/docs/(.*)$")
     match = re.match(ptn, current)
     if match:
@@ -42,6 +40,10 @@ def list_files(path: str = "") -> list:
     files = [file for file in files if not any(exclusion in file for exclusion in exclusions)]
     return files
 
+def print_cwd(path: str):
+    block =  QuartoPrint("")
+    block.append(path)
+    print(block)
 
 def include_shiny_folder(
     path: str,
@@ -57,27 +59,15 @@ def include_shiny_folder(
         )
     )
 
-def print_cwd(path: str):
-    # ptn = ("^.*/(docs/.*)$")
-    # match = re.match(ptn, path)
-    # if match:
-    #     folder = match.group(1)
-    # else:
-    #     folder = "not found"
-    block =  QuartoPrint("")
-    block.append(path)
-    print(block)
 
 def _include_shiny_folder(
     path: str = "",
     file_name: str = "app.py",
     exclusions: list = [],
-    # components: str = "editor, viewer, terminal",
     components: str = "editor, viewer",
     viewer_height: str = "800",
     extra_object: any = "",
 ) -> QuartoPrint:
-    # folder_path = Path(__name__).parent / path
     folder_path = path
 
     additional_exclude = ['app-core.py', 'app-solution-core.py']
@@ -94,7 +84,6 @@ def _include_shiny_folder(
     )
 
     # Print contents of the main application
-    # block.append_file(folder_path / file_name, None)
     block.append_file(file_name, None)
 
     exclude_list = ["__pycache__"] + [file_name] + exclusions + additional_exclude
@@ -154,17 +143,10 @@ def problem_tabs_express(
         app_exclusions:list = [],
         sol_exclusions:list = [],
     ) -> None:
-    # path = os.path.basename(folder_name)
-    # path = os.path.join(path, "problem")
-    # path = "problem"
     path = ""
-
-
     app_exclusions = ["app-solution.py", "README"] + app_exclusions
     sol_exclusions = ["app.py", "README"] + sol_exclusions
 
-    
-    # prompt = parse_readme("problem")
     prompt = parse_readme("")
 
     if prompt == "":
