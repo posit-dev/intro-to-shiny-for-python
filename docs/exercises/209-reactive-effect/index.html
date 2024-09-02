@@ -45,6 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-contrib/shinylive-0.5.0/shinylive/shinylive.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/yourturnIframeChild-0.1.0/iframe-resizer.child.js"></script>
+<script src="../../../site_libs/quarto-contrib/yourturnIframeChild-0.1.0/test.js"></script>
 <link href="../../../site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -186,14 +187,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/exercises/202-reactive-stack/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">202 Stacking reactives</span></a>
+  <a href="../../../docs/exercises/203-reactive-event/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">208 Reactive event</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/exercises/208-reactive-event/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">208 Reactive event</span></a>
+  <a href="../../../docs/exercises/207-reactive-stack/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">202 Stacking reactives</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -371,6 +372,16 @@ with ui.layout_columns():
         @render_plotly
         def score_dist():
             return plot_score_distribution(character_filter())
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -434,16 +445,6 @@ def plot_api_response(df):
     fig = px.histogram(df, x="Value", nbins=50, title="API response time")
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
-
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
 ## file: requirements.txt
 pandas
@@ -1529,6 +1530,16 @@ with ui.layout_columns():
         @render_plotly
         def score_dist():
             return plot_score_distribution(character_filter())
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -1592,16 +1603,6 @@ def plot_api_response(df):
     fig = px.histogram(df, x="Value", nbins=50, title="API response time")
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
-
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
 ## file: requirements.txt
 pandas
@@ -2697,6 +2698,16 @@ with ui.layout_columns():
         @render_plotly
         def score_dist():
             return plot_score_distribution(character_filter())
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -2760,16 +2771,6 @@ def plot_api_response(df):
     fig = px.histogram(df, x="Value", nbins=50, title="API response time")
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
-
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
 ## file: requirements.txt
 pandas
@@ -3880,7 +3881,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/intro-to-shiny-for-python\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

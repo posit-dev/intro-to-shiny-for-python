@@ -439,7 +439,23 @@
 <li>So far we’ve been working with shallow reactive graphs</li>
 <li>Each input is passed to a rendering function which produces an output</li>
 <li>Input -&gt; Recipe -&gt; Output can produce repetitive, inefficient applications</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<ul>
 <li><code>@reactive.calc</code> creates calculations whose results can be used by one <em>or more</em> outputs</li>
+</ul>
+</div>
+</div>
+</div>
+<ul>
 <li>This adds intermediate nodes to the reactive graph</li>
 </ul>
 </section>
@@ -480,33 +496,42 @@
 </section>
 <section id="problems-with-repetition" class="slide level2">
 <h2>Problems with repetition</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
 <ol type="1">
 <li>Code is in multiple places</li>
 <li>The app is taking the sample twice</li>
 <li>The table and graph are not using the same sample!</li>
 </ol>
+</div>
+</div>
+</div>
 </section>
 <section id="reactive-calculation-to-the-rescue" class="slide level2">
-<h2>Reactive Calculation to the rescue</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="1-4,9,15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>    <span class="at">@reactive.calc</span></span>
+<h2>Reactive calculation to the rescue</h2>
+<div class="sourceCode" id="cb2" data-code-line-numbers="1-2,8,13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>    <span class="at">@reactive.calc</span></span>
 <span id="cb2-2"><a></a>    <span class="kw">def</span> sampled_df():</span>
 <span id="cb2-3"><a></a>        rand <span class="op">=</span> np.random.rand(<span class="bu">input</span>.n_rows(), <span class="dv">1</span>)</span>
 <span id="cb2-4"><a></a>        df <span class="op">=</span> pd.DataFrame(rand, columns<span class="op">=</span>[<span class="st">"col_1"</span>])</span>
 <span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a>    <span class="at">@output</span></span>
-<span id="cb2-7"><a></a>    <span class="at">@render.table</span></span>
-<span id="cb2-8"><a></a>    <span class="kw">def</span> df():</span>
-<span id="cb2-9"><a></a>        <span class="cf">return</span> sampled_df()</span>
-<span id="cb2-10"><a></a></span>
-<span id="cb2-11"><a></a>    <span class="at">@output</span></span>
-<span id="cb2-12"><a></a>    <span class="at">@render.plot</span></span>
-<span id="cb2-13"><a></a>    <span class="kw">def</span> hist():</span>
-<span id="cb2-14"><a></a>        plot <span class="op">=</span> (</span>
-<span id="cb2-15"><a></a>            ggplot(sampled_df(), aes(x<span class="op">=</span><span class="st">"col_1"</span>))</span>
-<span id="cb2-16"><a></a>            <span class="op">+</span> geom_histogram(binwidth<span class="op">=</span><span class="fl">0.1</span>, fill<span class="op">=</span><span class="st">"blue"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb2-17"><a></a>            <span class="op">+</span> labs(x<span class="op">=</span><span class="st">"Random Values"</span>, y<span class="op">=</span><span class="st">"Frequency"</span>, title<span class="op">=</span><span class="st">"Histogram of Random Data"</span>)</span>
-<span id="cb2-18"><a></a>        )</span>
-<span id="cb2-19"><a></a>        <span class="cf">return</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a></a>    <span class="at">@render.table</span></span>
+<span id="cb2-7"><a></a>    <span class="kw">def</span> df():</span>
+<span id="cb2-8"><a></a>        <span class="cf">return</span> sampled_df()</span>
+<span id="cb2-9"><a></a></span>
+<span id="cb2-10"><a></a>    <span class="at">@render.plot</span></span>
+<span id="cb2-11"><a></a>    <span class="kw">def</span> hist():</span>
+<span id="cb2-12"><a></a>        <span class="cf">return</span> (</span>
+<span id="cb2-13"><a></a>            ggplot(sampled_df(), aes(x<span class="op">=</span><span class="st">"col_1"</span>))</span>
+<span id="cb2-14"><a></a>            <span class="op">+</span> geom_histogram(binwidth<span class="op">=</span><span class="fl">0.1</span>, fill<span class="op">=</span><span class="st">"blue"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb2-15"><a></a>            <span class="op">+</span> labs(x<span class="op">=</span><span class="st">"Random Values"</span>, y<span class="op">=</span><span class="st">"Frequency"</span>, title<span class="op">=</span><span class="st">"Histogram of Random Data"</span>)</span>
+<span id="cb2-16"><a></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="reactive-calculations-1" class="slide level2">
 <h2>Reactive calculations</h2>
@@ -547,9 +572,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -592,9 +617,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -637,9 +662,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -682,9 +707,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -727,9 +752,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -772,9 +797,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -817,9 +842,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -862,9 +887,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -907,9 +932,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -952,9 +977,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -997,9 +1022,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1042,9 +1067,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1087,9 +1112,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1132,9 +1157,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1177,9 +1202,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default changed flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default changed flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1222,9 +1247,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1267,9 +1292,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1312,9 +1337,9 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Slider</span>
 </div>
-</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="69.25" y="-16.5" x="-34.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-27.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="54.25">
+</foreignobject></g></g><g transform="translate(75.58203125, 99.5)" id="flowchart-S-13" class="node default default flowchart-label"><rect height="33" width="88.828125" y="-16.5" x="-44.4140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9140625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="73.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Sample</span>
+<span class="nodeLabel">sample_df</span>
 </div>
 </foreignobject></g></g><g transform="translate(26.625, 182.5)" id="flowchart-T-15" class="node default default flowchart-label"><rect height="33" width="53.25" y="-16.5" x="-26.625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-19.125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="38.25">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
@@ -1456,19 +1481,45 @@
 <section id="overriding-reactivity-1" class="slide level2">
 <h2>Overriding reactivity</h2>
 <ul>
-<li>By default, when an input changes, any outputs that use it will recalculate</li>
-<li>This isn’t always the user interaction you want
+<li>By default, when an input changes, all outputs that use it will recalculate</li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>This isn’t always the user interaction you want:</p>
 <ul>
 <li>Database queries</li>
 <li>Expensive modeling</li>
 <li>Grouping multiple filters together</li>
 <li>Side effects</li>
-</ul></li>
-<li>Use <code>reactive.event</code> to explicitly specify what should trigger recalculation for an output or calc</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Use <code>@reactive.event</code> to explicitly specify the trigger for an output or calc</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
+<section id="example-of-reactive-event" class="slide level2">
+<h2>Example of reactive event</h2>
 <div class="your-turn-container" style="display:flex;">
 <div class="your-turn-link" style="width:70%;">
 <p>View the app on this page:</p>
@@ -1482,33 +1533,44 @@
 </div>
 </section>
 <section id="reactive.event" class="slide level2">
-<h2>reactive.event</h2>
+<h2><span class="citation" data-cites="reactive.event">@reactive.event</span></h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui, render, <span class="bu">input</span></span>
 <span id="cb3-2"><a></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
 <span id="cb3-3"><a></a></span>
 <span id="cb3-4"><a></a>ui.input_text(<span class="st">"input_txt"</span>, <span class="st">"Enter text"</span>)</span>
 <span id="cb3-5"><a></a>ui.input_action_button(<span class="st">"send"</span>, <span class="st">"Enter"</span>)</span>
-<span id="cb3-6"><a></a><span class="at">@render.text</span></span>
-<span id="cb3-7"><a></a><span class="at">@reactive.event</span>(<span class="bu">input</span>.send)</span>
-<span id="cb3-8"><a></a><span class="kw">def</span> output_txt():</span>
-<span id="cb3-9"><a></a>    <span class="cf">return</span> <span class="bu">input</span>.input_txt()</span>
-<span id="cb3-10"><a></a></span>
-<span id="cb3-11"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="at">@render.text</span></span>
+<span id="cb3-8"><a></a><span class="at">@reactive.event</span>(<span class="bu">input</span>.send)</span>
+<span id="cb3-9"><a></a><span class="kw">def</span> output_txt():</span>
+<span id="cb3-10"><a></a>    <span class="cf">return</span> <span class="bu">input</span>.input_txt()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
 <ul>
 <li><code>@reactive.event</code> overrides the usual <em>implicit</em> dependency detection with an <em>explicit</em> trigger</li>
 <li>It can be applied to rendering functions or to <code>@reactive.calc</code></li>
 <li>It tells Shiny to invalidate the object whenever or more inputs change</li>
 <li><code>@reactive.event</code> is often used with action buttons or action links</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="your-turn-2" class="slide level2">
 <h2>Your turn</h2>
 <div class="your-turn-container" style="display:flex;">
 <div class="your-turn-link" style="width:70%;">
 <p>Complete the exercise on this page:</p>
-<p><a href="exercises/208-reactive-event/208-reactive-event.html" target="_blank">208-reactive-event</a></p>
+<p><a href="exercises/203-reactive-event/203-reactive-event.html" target="_blank">203-reactive-event</a></p>
 <p>...</p>
-<p><button style="background-color: #72994E; color:#FFFFFF; font-size: 1em; border-radius: 15px; padding: 0.5em 1em;" onclick="window.top.postMessage('exercises/208-reactive-event/208-reactive-event.html', '*')">Open Exercise</button></p>
+<p><button style="background-color: #72994E; color:#FFFFFF; font-size: 1em; border-radius: 15px; padding: 0.5em 1em;" onclick="window.top.postMessage('exercises/203-reactive-event/203-reactive-event.html', '*')">Open Exercise</button></p>
 </div>
 <div class="your-turn-image" style="width:30%;">
 <img data-src="../images/keep-calm-and-take-your-turn.png">
@@ -1595,26 +1657,50 @@
 </section>
 <section id="the-rule" class="slide level2">
 <h2>The rule</h2>
-<ul>
-<li>Code that produces an output: <code>@output</code> + <code>@render.*</code></li>
-<li>Code that produces an intermediate value: <code>@reactive.calc</code></li>
-<li><strong>Code that produces only side effects: <code>@reactive.effect</code></strong></li>
-</ul>
+<p>Code that produces:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Desired effect</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>an output</td>
+<td><code>@render_*</code></td>
+</tr>
+<tr class="even">
+<td>an intermediate value</td>
+<td><code>@reactive.calc</code></td>
+</tr>
+<tr class="odd">
+<td>only side effects</td>
+<td><code>@reactive.effect</code></td>
+</tr>
+</tbody>
+</table>
 <div class="fragment">
-<div>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li>Code that produces a value <em>and</em> a side effect: <em>Don’t do this!</em>
-<ul>
-<li>The “command-query separation” principle</li>
-</ul></li>
+<li><p>Code that produces a value <em>and</em> a side effect: <em>Don’t do this!</em></p></li>
+<li><p>The “command-query separation” principle</p></li>
 </ul>
 </div>
+</div>
+</div>
+<!-- ## What's a side effect? -->
 </div>
 </section>
 <section id="whats-a-side-effect" class="slide level2">
-<h2>What’s a side effect?</h2>
-</section>
-<section id="whats-a-side-effect-1" class="slide level2">
 <h2>What’s a side effect?</h2>
 <ul>
 <li>Somewhat context dependent</li>
@@ -1627,9 +1713,9 @@
 <div class="your-turn-container" style="display:flex;">
 <div class="your-turn-link" style="width:70%;">
 <p>Complete the exercise on this page:</p>
-<p><a href="exercises/201-reactive-calc/index.html" target="_blank">201-reactive-calc</a></p>
+<p><a href="exercises/209-reactive-calc/index.html" target="_blank">209-reactive-calc</a></p>
 <p>...</p>
-<p><button style="background-color: #72994E; color:#FFFFFF; font-size: 1em; border-radius: 15px; padding: 0.5em 1em;" onclick="window.top.postMessage('exercises/201-reactive-calc/index.html', '*')">Open Exercise</button></p>
+<p><button style="background-color: #72994E; color:#FFFFFF; font-size: 1em; border-radius: 15px; padding: 0.5em 1em;" onclick="window.top.postMessage('exercises/209-reactive-calc/index.html', '*')">Open Exercise</button></p>
 </div>
 <div class="your-turn-image" style="width:30%;">
 <img data-src="../images/keep-calm-and-take-your-turn.png">
@@ -1946,7 +2032,7 @@
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/intro-to-shiny-for-python\/");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

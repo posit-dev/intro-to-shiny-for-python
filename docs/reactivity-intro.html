@@ -183,14 +183,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/exercises/202-reactive-stack/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">202 Stacking reactives</span></a>
+  <a href="../docs/exercises/203-reactive-event/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">208 Reactive event</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/exercises/208-reactive-event/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">208 Reactive event</span></a>
+  <a href="../docs/exercises/207-reactive-stack/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">202 Stacking reactives</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -364,7 +364,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/intro-to-shiny-for-python\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
