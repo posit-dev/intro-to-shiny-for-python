@@ -1,2 +1,4 @@
 Extract the account filtering logic into a reactive calculation.
 
+Hint: the line `df[df["account"] == input.account()]` is redundant.  Create a reactive calc to reduce the duplication.
+

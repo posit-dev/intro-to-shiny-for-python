@@ -4,6 +4,10 @@ from data_import import df
 from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distribution
 from shinywidgets import render_plotly
 
+
+# Task: insert the reactive calc here
+# Then call the reactive calc everywhere the filtering happens
+
 with ui.sidebar():
     ui.input_select(
         "account",

@@ -38,7 +38,11 @@ from helpers import include_shiny_folder, multiple_choice_app, Quiz
 - So far we've been working with shallow reactive graphs
 - Each input is passed to a rendering function which produces an output
 - Input -> Recipe -> Output can produce repetitive, inefficient applications
+
+::: {.callout-important}
 - `@reactive.calc` creates calculations whose results can be used by one _or more_ outputs
+:::
+
 - This adds intermediate nodes to the reactive graph
 
 ## Reactive Calc example
@@ -70,31 +74,31 @@ from helpers import include_shiny_folder, multiple_choice_app, Quiz
 
 ## Problems with repetition
 
-1) Code is in multiple places
-2) The app is taking the sample twice
-3) The table and graph are not using the same sample!
+::: {.callout-warning}
+1. Code is in multiple places
+1. The app is taking the sample twice
+1. The table and graph are not using the same sample!
 
-## Reactive Calculation to the rescue
-```{.python code-line-numbers="1-4,9,15"}
+:::
+
+## Reactive calculation to the rescue
+```{.python code-line-numbers="1-2,8,13"}
     @reactive.calc
     def sampled_df():
         rand = np.random.rand(input.n_rows(), 1)
         df = pd.DataFrame(rand, columns=["col_1"])
 
-    @output
     @render.table
     def df():
         return sampled_df()
 
-    @output
     @render.plot
     def hist():
-        plot = (
+        return (
             ggplot(sampled_df(), aes(x="col_1"))
             + geom_histogram(binwidth=0.1, fill="blue", color="black")
             + labs(x="Random Values", y="Frequency", title="Histogram of Random Data")
         )
-        return plot
 ```
 
 ## Reactive calculations
@@ -109,7 +113,7 @@ from helpers import include_shiny_folder, multiple_choice_app, Quiz
 ## Initial state
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]
   
@@ -122,7 +126,7 @@ flowchart TD
 ## Calculate table
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -135,7 +139,7 @@ flowchart TD
 ## Calculate table
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -147,7 +151,7 @@ flowchart TD
 ## Calculate sample
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]:::changed
+  Sl[Slider] --> S[sample_df]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -159,7 +163,7 @@ flowchart TD
 ## Calculate sample
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]:::changed
+  Sl[Slider] --> S[sample_df]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -170,7 +174,7 @@ flowchart TD
 ## Calculate plot
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]:::changed
   
@@ -181,7 +185,7 @@ flowchart TD
 ## Calculate plot
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]:::changed
   
@@ -191,7 +195,7 @@ flowchart TD
 ## Deep reactive graph
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]
   
@@ -202,7 +206,7 @@ flowchart TD
 
 ```{mermaid}
 flowchart TD
-  Sl[Slider]:::changed --> S[Sample]
+  Sl[Slider]:::changed --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]
   
@@ -212,7 +216,7 @@ flowchart TD
 ## Invalidated
 ```{mermaid}
 flowchart TD
-  Sl[Slider]:::changed --> S[Sample]:::changed
+  Sl[Slider]:::changed --> S[sample_df]:::changed
   S --> T[Table]
   S --> P[Plot]
   
@@ -223,7 +227,7 @@ flowchart TD
 ## Invalidated
 ```{mermaid}
 flowchart TD
-  Sl[Slider]:::changed --> S[Sample]:::changed
+  Sl[Slider]:::changed --> S[sample_df]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]:::changed
   
@@ -236,7 +240,7 @@ flowchart TD
 ## Recalculate table
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -249,7 +253,7 @@ flowchart TD
 ## Recalculate table
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -261,7 +265,7 @@ flowchart TD
 ## Recalculate sample
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]:::changed
+  Sl[Slider] --> S[sample_df]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -273,7 +277,7 @@ flowchart TD
 ## Recalculate sample
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]:::changed
+  Sl[Slider] --> S[sample_df]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -284,7 +288,7 @@ flowchart TD
 ## Recalculate plot
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]:::changed
   
@@ -295,7 +299,7 @@ flowchart TD
 ## Recalculate plot
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]:::changed
   
@@ -305,7 +309,7 @@ flowchart TD
 ## Updated
 ```{mermaid}
 flowchart TD
-  Sl[Slider] --> S[Sample]
+  Sl[Slider] --> S[sample_df]
   S --> T[Table]
   S --> P[Plot]
   classDef changed fill:#f96
@@ -334,20 +338,27 @@ flowchart TD
 
 ## Overriding reactivity
 
-- By default, when an input changes, any outputs that use it will recalculate
-- This isn't always the user interaction you want
-    - Database queries
-    - Expensive modeling
-    - Grouping multiple filters together
-    - Side effects
-- Use `reactive.event` to explicitly specify what should trigger recalculation for an output or calc
+- By default, when an input changes, all outputs that use it will recalculate
 
-## Example
+::::: {.callout-tip}
+This isn't always the user interaction you want:
+
+ - Database queries
+ - Expensive modeling
+ - Grouping multiple filters together
+ - Side effects
+:::
+
+::: {.callout-important}
+- Use `@reactive.event` to explicitly specify the trigger for an output or calc
+:::
+
+## Example of reactive event
 
 {{< yourview '202-reactive-event' >}}
 
 
-## reactive.event
+## @reactive.event
 
 ```{.python}
 from shiny.express import ui, render, input
@@ -355,23 +366,23 @@ from shiny import reactive
 
 ui.input_text("input_txt", "Enter text")
 ui.input_action_button("send", "Enter")
+
 @render.text
 @reactive.event(input.send)
 def output_txt():
     return input.input_txt()
-
-
-
 ```
 
+::: {.callout-important}
 - `@reactive.event` overrides the usual _implicit_ dependency detection with an _explicit_ trigger
 - It can be applied to rendering functions or to `@reactive.calc`
 - It tells Shiny to invalidate the object whenever or more inputs change
 - `@reactive.event` is often used with action buttons or action links
+:::
 
 ## Your turn
 
-{{< yourturn '208-reactive-event' 'true' >}}
+{{< yourturn '203-reactive-event' 'true' >}}
 
 
 # Side effects
@@ -419,18 +430,24 @@ def toggle_modal():
 
 ## The rule
 
-* Code that produces an output: `@output` + `@render.*`
-* Code that produces an intermediate value: `@reactive.calc`
-* **Code that produces only side effects: `@reactive.effect`**
+Code that produces:
+
+Desired effect  | Code
+--------------  | --------------
+an output              | `@render_*`
+an intermediate value  | `@reactive.calc`
+only side effects      | `@reactive.effect`
 
 . . .
 
-::: nonincremental
+::: {.callout-caution}
+
 * Code that produces a value _and_ a side effect: _Don't do this!_
-  * The "command-query separation" principle
+
+* The "command-query separation" principle
 :::
 
-## What's a side effect?
+<!-- ## What's a side effect? -->
 ```{python}
 #| echo: false
 #| output: asis
@@ -483,5 +500,5 @@ multiple_choice_app(questions)
 
 ## Your turn
 
-{{< yourturn '201-reactive-calc' >}}
+{{< yourturn '209-reactive-calc' >}}
 

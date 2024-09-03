@@ -5,8 +5,8 @@ from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distri
 from shinywidgets import render_plotly
 
 
-# You should always extract repeated logic into a reactive.cacl
-# in addition to making your app easier to read it will also
+# You should always extract repeated logic into a @reactive.calc
+# In addition to making your app easier to read it will 
 # make it run faster because the reactive calc is calculated once
 # even if many other rendering functions retrieve its value.
 @reactive.calc

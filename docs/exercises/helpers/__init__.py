@@ -22,6 +22,13 @@ class QuartoPrint(list):
             app_contents = app_file.read()
             self.append(app_contents)
 
+    def append_solution(self, file_path:str):
+        self.append('<pre id="sledSolutionCode" style="display:none;">')
+        with open(file_path, "r") as app_file:
+            app_contents = app_file.read()
+            self.append(app_contents)
+        self.append("</pre>")
+        
 
 def getcwd() -> str:
     current =  os.getcwd()
@@ -67,6 +74,7 @@ def _include_shiny_folder(
     components: str = "editor, viewer",
     viewer_height: str = "800",
     extra_object: any = "",
+    add_solution=False
 ) -> QuartoPrint:
     folder_path = path
 
@@ -82,6 +90,7 @@ def _include_shiny_folder(
             f"#| viewerHeight: {viewer_height}",
         ]
     )
+
 
     # Print contents of the main application
     block.append_file(file_name, None)
@@ -104,7 +113,11 @@ def _include_shiny_folder(
 
     # Finish with the closing tag
     block.append("```")
+    if add_solution:
+        block.append_solution("app-solution.py")
+
     return block
+
 
 
 def collapse_prompt(prompt: str) -> list:
@@ -129,6 +142,79 @@ def parse_readme(path: str) -> str:
 
 def problem_app_express(folder_name) -> None:
     problem_tabs_express(folder_name, app=True)
+
+def problem_tabs_single(
+        folder_name:str = "", 
+        app:bool = False,
+        viewer_height:str="800",
+        app_exclusions:list = [],
+        sol_exclusions:list = [],
+    ) -> None:
+    path = ""
+    app_exclusions = ["app-solution.py", "README"] + app_exclusions
+    sol_exclusions = ["app.py", "README"] + sol_exclusions
+
+    prompt = parse_readme("")
+
+    if prompt == "":
+        block = QuartoPrint("")
+    else:
+        block = QuartoPrint(
+                collapse_prompt(prompt)
+        )
+    block.extend(
+        [
+            "",
+            "::::: {.column-screen-inset}",
+            "::: {.panel-tabset}",
+        ]
+    )
+
+    #---- Goal -------------------------------
+    if not app:
+        block.append("## Problem")
+        # Include the toggleEditor function
+        block.append('<button id="sledHide" type="button" onclick="toggleEditor(false)">\<\< Hide editor</button>')
+        block.append('<button id="sledShow" style="display: none;" type="button" onclick="toggleEditor(true)">\>\> Show editor</button>')
+        block.append('<button id="sledProb" style="display: none;" type="button" onclick="insertProblemCode()">Show problem</button>')
+        block.append('<button id="sledSoln" type="button" onclick="insertSolutionCode()">** Show solution **</button>')
+        block.extend(
+            _include_shiny_folder(
+                path, 
+                "app.py", 
+                exclusions=app_exclusions,
+                viewer_height=viewer_height,
+                add_solution=True
+            )
+        )
+    else:
+        block.append("## App")
+        block.extend(
+            _include_shiny_folder(
+                path, 
+                "app.py", 
+                exclusions=["app-solution.py", "README"],
+                components="viewer",
+                viewer_height=viewer_height
+
+            )
+        )
+
+    block.append("## {{< bi github >}}")
+
+    if app:
+        github_path = os.path.join("docs", folder_name)
+    else:
+        github_path = os.path.join("docs", folder_name)
+    block.append(
+        f"The source code for this exercise is at "
+        f"<https://github.com/posit-conf-2024/intro-to-shiny-for-python/tree/main/{github_path}>."
+    )
+
+    block.append(":::")
+    block.append(":::::")
+    print(block)
+
 
 
 # Inserts problem tab (goal, problem, solution) into the document as markdown
