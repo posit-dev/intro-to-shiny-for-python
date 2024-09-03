@@ -6,12 +6,12 @@ execute:
 
 website:
   title: "Workshop: Intro to Shiny for Python"
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "**Alert** - this site is under active construction"
-    type: warning
-    position: below-navbar
+  # announcement: 
+  #   icon: info-circle
+  #   dismissable: true
+  #   content: "**Alert** - this site is under active construction"
+  #   type: warning
+  #   position: below-navbar
   navbar:
     logo: images/intro-to-shiny-for-python.png
     search: true
@@ -65,8 +65,8 @@ website:
         - section: "Exercises"
           contents: 
           - docs/exercises/201-reactive-calc/index.qmd
-          - docs/exercises/202-reactive-stack/index.qmd
-          - docs/exercises/208-reactive-event/index.qmd
+          - docs/exercises/203-reactive-event/index.qmd
+          - docs/exercises/207-reactive-stack/index.qmd
           - docs/exercises/209-reactive-effect/index.qmd
         - section: "Apps"
           contents:
